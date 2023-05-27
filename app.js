@@ -9,7 +9,9 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 var cors = require("cors");
 
-app.use(cors());
+app.use(cors({
+  credentials: true,
+}));
 app.use(cookieParser());
 
 process.on("uncaughtException", (error, origin) => {
