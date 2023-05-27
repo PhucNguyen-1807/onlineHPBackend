@@ -24,7 +24,7 @@ class ScheduleController{
    pharmacyMedicine(req,res){
     let medicine=async() =>{
         try{
-          var result = (await accConnection.query(QUERY.SELECT_SPECIFIC_PHARMACY,req.body.pharmacyName))[0]
+          var result = (await accConnection.query(QUERY.SELECT_SPECIFIC_PHARMACY,req.query.pharmacyName))[0]
           res.status(200).json(result)
         }
         catch(err){

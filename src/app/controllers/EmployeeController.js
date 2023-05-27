@@ -8,7 +8,7 @@ class EmployeeController{
     getDoctorInfo(req,res)
     {   
         let getInfo =async ()=>{
-        var result =await accConnection.query(QUERY.SELECT_DOCTOR,req.body.employeeID)
+        var result =await accConnection.query(QUERY.SELECT_DOCTOR,req.query.employeeID)
         res.json(result[0][0])
         }
         getInfo()
@@ -34,7 +34,7 @@ class EmployeeController{
     {
         let getTime =async ()=>{
             try{
-                    var result = await accConnection.query(QUERY.SELECT_AVAILABLE_TIME_BY_DOCTOR,req.body.employeeID)
+                    var result = await accConnection.query(QUERY.SELECT_AVAILABLE_TIME_BY_DOCTOR,req.query.employeeID)
                     // for(let i=0;i<)
                     res.json(result[0])
                 }

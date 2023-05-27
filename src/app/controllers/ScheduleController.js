@@ -120,7 +120,7 @@ class ScheduleController{
    getApproveAppointment(req,res){
     let approveAppointment=async() =>{
       try{
-        var result=(await accConnection.query(QUERY.SELECT_APPROVE_APPOINTMENT,req.body.employeeID))[0]
+        var result=(await accConnection.query(QUERY.SELECT_APPROVE_APPOINTMENT,req.query.employeeID))[0]
         for(var i=0;i<result.length;i++)
         {
           var users= (await accConnection.query(QUERY.SELECT_INFO_USERS_IN_APPOINTMENT,result[i].userID))[0][0]
