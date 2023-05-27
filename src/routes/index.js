@@ -17,21 +17,6 @@ function route(app)
             app.get('/get-all-pharmacy',pharmacyController.allPharmacy)
             app.get('/get-all-medicine-pharmacy',pharmacyController.pharmacyMedicine)
             app.get('/verify-email/:token',scheduleController.verifyEmail)
-            app.get('/', (req, res) => {
-                // Retrieve the value of the "token" cookie
-                const tokenValue = req.cookies.token;
-                
-                // Use the token value as needed
-                console.log(tokenValue);
-              
-                // Send a response
-                res.send('Cookie value: ' + tokenValue);
-              });
-              app.get('/token', (req, res) => {
-                // Retrieve the value of the "token" cookie
-              res.cookie('tok',"iloveu")
-              res.json("SUCCESS")
-              });
             app.post('/search',pharmacyController.search)
             app.post('/order',pharmacyController.order)
             app.post('/approve-users',scheduleController.approveUser)
