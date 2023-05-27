@@ -10,8 +10,11 @@ const cookieParser = require("cookie-parser");
 var cors = require("cors");
 
 app.use(cors({
+  origin:["*"],
   credentials: true,
+  exposeHeaders :["set-cookie"]
 }));
+
 app.use(cookieParser());
 
 process.on("uncaughtException", (error, origin) => {
