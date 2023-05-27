@@ -6,7 +6,7 @@ const QUERY={
     "SELECT_LOGIN_USERID":'SELECT id FROM users WHERE email= ? AND password=? ',
     "SELECT_DS":'SELECT id,name,roleId,phone FROM employee WHERE roleId=2 or roleId=3',
     "SELECT_DOCTOR":'SELECT id,name,email,address,phone,specialist,gender,roleId,description,avatar FROM employee WHERE id=?',
-    "SELECT_ALL_DOCTOR":'SELECT id,name,email,address,phone,specialist,gender,roleId FROM employee WHERE roleId = 2',
+    "SELECT_ALL_DOCTOR":'SELECT id,name,email,address,phone,specialist,gender,roleId,avatar FROM employee WHERE roleId = 2',
     "SELECT_AVAILABLE_TIME_BY_DOCTOR":'SELECT * FROM availableTime WHERE employeeID = ? and isFull=0',
     "INSERT_AVAILABLE_TIME" : "INSERT INTO availableTime VALUES (?,?,?,?,0)",
     "INSERT_APPOINTMENT":"INSERT INTO appointment(employeeID,userID,start,end,date,type,link) VALUES (?,?,?,?,?,?,?)",
