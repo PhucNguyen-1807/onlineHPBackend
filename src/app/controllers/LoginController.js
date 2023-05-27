@@ -27,6 +27,12 @@ class LoginController{
             try{
                         var check1=(await accConnection.query(QUERY.SELECT_LOGIN_CHECK_USER,[req.body.email,req.body.password]))[0][0]
                         var check2=(await accConnection.query(QUERY.SELECT_LOGIN_CHECK_EMPLOYEE,[req.body.email,req.body.password]))[0][0]
+                        // var check3=(await accConnection.query("select * from users where email=? and password=?",[req.body.email,req.body.password] ))[0]
+                        // var check4=(await accConnection.query("select * from users",[req.body.email,req.body.password] ))[0]
+                        console.log(check1);
+                        console.log(check2);
+                        // console.log(check3);
+                        // console.log(check4);
                         if(check2.Existing)
                         {
                         var roleId=(await accConnection.query(QUERY.SELECT_LOGIN_ROLEID,[req.body.email,req.body.password]))[0][0]
@@ -47,7 +53,7 @@ class LoginController{
             }
             catch(error)
             {
-                res.status.json(error)
+                res.status(400).json(error)
             }
      }
         check()

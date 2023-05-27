@@ -3,7 +3,7 @@ const QUERY={
     "SELECT_LOGIN_CHECK_EMPLOYEE":'SELECT EXISTS(SELECT * FROM employee WHERE email= ? AND password=? ) AS Existing',
     "INSERT_SIGNUP_USER":"INSERT INTO `users`(`email`,`password`) VALUES(?,?)",
     "SELECT_LOGIN_ROLEID":'SELECT roleId FROM employee WHERE email= ? AND password=? ',
-    "SELECT_LOGIN_USERID":'SELECT id FROM userse WHERE email= ? AND password=? ',
+    "SELECT_LOGIN_USERID":'SELECT id FROM users WHERE email= ? AND password=? ',
     "SELECT_DS":'SELECT id,name,roleId,phone FROM employee WHERE roleId=2 or roleId=3',
     "SELECT_DOCTOR":'SELECT id,name,email,address,phone,specialist,gender,roleId,description,avatar FROM employee WHERE id=?',
     "SELECT_ALL_DOCTOR":'SELECT id,name,email,address,phone,specialist,gender,roleId FROM employee WHERE roleId = 2',
@@ -24,7 +24,10 @@ const QUERY={
     "SELECT_INFO_USERS":"SELECT id,name,email,phone FROM users WHERE id IN ?",
     "SELECT_INFO_USERS_IN_APPOINTMENT":"SELECT name,phone FROM users WHERE id =?",
     "SELECT_INFO_PHARMACY":"SELECT * FROM pharmacy ",
-    "SELECT_SPECIFIC_PHARMACY":"SELECT * FROM medicine WHERE pharmacyName=? "
+    "SELECT_SPECIFIC_PHARMACY":"SELECT * FROM medicine WHERE pharmacyName=? ",
+    "SELECT_SEARCH":"SELECT medicineName,number,price,description,image FROM medicine WHERE pharmacyName=? AND medicineName LIKE CONCAT('%', ?, '%')",
+    "SELECT_NUMBER_MEDICINE" : "SELECT number WHERE pharmacyName=? AND medicineName=?",
+    "UPDATE_NUMBER_MEDICINE" : "UPDATE medicine SET number=number - ? WHERE pharmacyName=? AND medicineName=?"
 
 
 }   

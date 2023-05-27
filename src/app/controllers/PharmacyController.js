@@ -33,6 +33,41 @@ class ScheduleController{
       }
       medicine()
    }
+
+   search(req,res){
+    let find=async() =>{
+        try{
+          var result = (await accConnection.query(QUERY.SELECT_SEARCH,[req.body.pharmacyName,req.body.valueSearch]))[0]
+          res.status(200).json(result)
+        }
+        catch(err){
+          res.status(404).send(err)
+        }
+      }
+      find()
+   }
+
+   order(req,res){
+    let book=async() =>{
+        try{
+          for (let i=0;i<req.body.medicines.length;i++){
+              var number = (await accConnection.query(QUERY.SELECT_NUMBER_MEDICINE,[req.body.medicines[i].pharmacyName,req.body.medicines[i].medicineName]))[0][0]
+              if(number.number - req.body.medicines[i].number<0)
+              {
+                res.status(409).send("The current number of this medicine cannot serve your order. Please try again sometimes later")
+              }
+        }
+          for (let i=0;i<req.body.medicines.length;i++){
+              await accConnection.query(QUERY.UPDATE_NUMBER_MEDICINE,[req.body.medicines[i].number,req.body.medicines[i].pharmacyName,req.body.medicines[i].medicineName])
+          
+        }
+        }
+        catch(err){
+          res.status(404).send(err)
+        }
+      }
+      book()
+   }
 }
 
 module.exports=new ScheduleController()
