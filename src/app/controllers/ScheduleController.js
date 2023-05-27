@@ -11,7 +11,7 @@ class ScheduleController{
     // employeeId,userId,start,end,date => thăng nào time rảnh mới hiện time//check coi đã có ai đặt lịch trước chưa 
         let makeAppointment= async ()=>{
           try{
-              req.body.link=`https://onlinehp.onrender.com/${generateRandomString(5)}`
+              req.body.link=`https://videocallhp.onrender.com/${generateRandomString(5)}`
               if(req.body.type==='offline')
               {
                 req.body.link='NULL'

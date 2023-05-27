@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser");
 var cors = require("cors");
 
 app.use(cors({
-  origin:["*"],
+  origin:"*",
   credentials: true,
   exposeHeaders :["set-cookie"]
 }));
