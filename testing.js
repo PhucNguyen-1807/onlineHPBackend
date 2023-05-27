@@ -1,12 +1,3 @@
-function generateRandomString(length) {
-  let result = '';
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  
-  for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * characters.length);
-    result += characters.charAt(randomIndex);
-  }
-  
-  return result;
-}
 
+var a=jwt.verify('token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg1MTgxOTE4fQ.E6P-WLhGxWGcS0YX9wy5CLW4FII40LJC5i-ZUZSAP44','mk')
+console.log(a);
