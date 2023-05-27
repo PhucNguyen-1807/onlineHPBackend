@@ -7,6 +7,9 @@ const upload = multer()
 const {engine}=require('express-handlebars');
 const path=require('path')
 const cookieParser = require('cookie-parser');
+var cors = require('cors')
+
+app.use(cors())
 app.use(cookieParser());
 app.engine('hbs', engine({
   extname:".hbs",
