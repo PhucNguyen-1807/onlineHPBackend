@@ -32,22 +32,22 @@ class LoginController{
                         if(check2.Existing)
                         {
                         var roleId=(await accConnection.query(QUERY.SELECT_LOGIN_ROLEID,[req.body.email,req.body.password]))[0][0]
-                        // var token=  jwt.sign({email:req.body.email,roleID:roleId.roleId},process.env.SECRET)
-                        var token={
-                            email:req.body.email,
-                            roleID:roleId.roleId
-                        }
-                        // res.cookie('token', token);
+                        var token=  jwt.sign({email:req.body.email,roleID:roleId.roleId},process.env.SECRET)
+                        // var token={
+                        //     email:req.body.email,
+                        //     roleID:roleId.roleId
+                        // }
+                        res.cookie('token', token);
                         res.status(200).json(token)
                         }
                         else if(check1.Existing)
                         {
                             var id=(await accConnection.query(QUERY.SELECT_LOGIN_USERID,[req.body.email,req.body.password]))[0][0]
-                            // var token=  jwt.sign({id:id.id,},process.env.SECRET)
-                            var token={
-                                id :id.id
-                            }
-                            // res.cookie('token', token);
+                            var token=  jwt.sign({id:id.id,},process.env.SECRET)
+                            // var token={
+                            //     id :id.id
+                            // }
+                            res.cookie('token', token);
                             res.status(200).json(token)
                         }
                         else{

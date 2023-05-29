@@ -1,5 +1,4 @@
 require('dotenv').config()
-const nodemailer=require('nodemailer')
 
 let time=()=>{
     const currentDate = new Date();
