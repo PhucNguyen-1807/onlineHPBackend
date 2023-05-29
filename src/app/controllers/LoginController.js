@@ -37,7 +37,10 @@ class LoginController{
                         //     email:req.body.email,
                         //     roleID:roleId.roleId
                         // }
-                        res.cookie('token', token);
+                        res.cookie('token', token,{
+                            sameSite: 'None',
+                            secure: true
+                          });
                         res.status(200).json(token)
                         }
                         else if(check1.Existing)
