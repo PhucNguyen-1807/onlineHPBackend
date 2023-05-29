@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser");
 var cors = require("cors");
 
 app.use(cors({
-  origin:"*",
+  origin:"http://localhost:3000",
   credentials: true,
   exposeHeaders :["set-cookie"]
 }));
