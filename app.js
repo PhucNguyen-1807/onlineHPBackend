@@ -15,7 +15,9 @@ app.use(cors({
   exposeHeaders :["set-cookie"]
 }));
 
-app.use(cookieParser());
+app.use(cookieParser({
+sameSite: 'none'
+}));
 
 process.on("uncaughtException", (error, origin) => {
   console.log("----- Uncaught exception -----");
