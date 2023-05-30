@@ -10,7 +10,7 @@ const searchGPT=async(comment)=>{
             model: "text-davinci-003",
             prompt: 
             `comment: ${comment}\n`+
-            `specialist: [Tổng Quát,Đa Khoa,Xương Khớp,Nội Soi,Tai Mũi Họng,Nội Tiêu Hóa]\n`+
+            `specialist: [Tổng Quát,Đa Khoa,Xương Khớp,Tai Mũi Họng,Truyền Nhiễm]\n`+
             `choose in specialist:`,
             max_tokens: 25,
             temperature: 0,
