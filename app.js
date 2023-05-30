@@ -11,25 +11,11 @@ var cors = require("cors");
 require("dotenv").config();
 
 app.use(cors({
-  origin: process.env.ORIGIN,
+  origin: "*",
   credentials: true,
   exposeHeaders :["set-cookie"]
 }));
 
-
-// Set up CORS middleware
-app.use((req, res, next) => {
-  // Allow requests from http://127.0.0.1:5501
-  res.setHeader('Access-Control-Allow-Origin', process.env.ORIGIN);
-  // You can also set other CORS headers as needed
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  
-  // Set SameSite attribute to 'None' to allow cross-site cookies
-  
-  // Pass control to the next middleware
-  next();
-});
 
 // Define your routes
 app.get('/login', (req, res) => {
