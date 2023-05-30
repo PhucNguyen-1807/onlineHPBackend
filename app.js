@@ -9,11 +9,14 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 var cors = require("cors");
 
-app.use(cors({
-  origin:["http://127.0.0.1:5501"],
-  credentials: true,
-  exposeHeaders :["set-cookie"]
-}));
+// app.use(cors({
+//   origin:["http://127.0.0.1:5501"],
+//   credentials: true,
+//   exposeHeaders :["set-cookie"]
+// }));
+
+
+// Set up CORS middleware
 app.use((req, res, next) => {
   // Allow requests from http://127.0.0.1:5501
   res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5501');
@@ -21,9 +24,24 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   
+  // Set SameSite attribute to 'None' to allow cross-site cookies
+  res.setHeader('Set-Cookie', 'cookie_name=value; Secure; SameSite=None');
+  
   // Pass control to the next middleware
   next();
 });
+
+// Define your routes
+app.get('/login', (req, res) => {
+  // Handle login request
+  res.send('Login successful!');
+});
+
+// Start the server
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
+
 app.use(cookieParser({
 sameSite: 'none'
 }));
