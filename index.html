@@ -1,31 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <form action="https://onlinehpbe.onrender.com/login" method="POST">
-        <p class="email_password">USERNAME</p>
-        <div class="email">
+      <p class="email_password">USERNAME</p>
+      <div class="email">
         <div class="block">
-            <i class="fas fa-envelope" style=" margin-top: 14.5px;margin-left:13px;color:white"></i>
+          <i
+            class="fas fa-envelope"
+            style="margin-top: 14.5px; margin-left: 13px; color: white"
+          ></i>
         </div>
-        <input type="text" class="form-control" name="email"  required>
-        </div>  
+        <input type="text" class="form-control" name="email" required />
+      </div>
 
-        <p class="email_password">PASSWORD</p>
-        <div class="password" style="position: relative;">
-            <div class="block">
-            <i class="fas fa-key" style=" margin-top: 14.5px;margin-left:13px;color:white"></i>
-           </div>
-            <input type="password" class="form-control" name ="password"  required> 
-            <a  class='forgot'>forgot?</a>   
-            
+      <p class="email_password">PASSWORD</p>
+      <div class="password" style="position: relative">
+        <div class="block">
+          <i
+            class="fas fa-key"
+            style="margin-top: 14.5px; margin-left: 13px; color: white"
+          ></i>
         </div>
-        <button class="login" type="submit">LOGIN</button>
+        <input type="password" class="form-control" name="password" required />
+        <a class="forgot">forgot?</a>
+      </div>
+      <button class="login" type="submit">LOGIN</button>
+
+      <script>
+        /**
+         * @type {HTMLFormElement}
+         */
+        const form = document.querySelector("form");
+        /**
+         * @type {HTMLInputElement}
+         */
+        const email = document.querySelector(".email > input");
+        const password = document.querySelector(".password > input");
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const data = {
+            email: email.value,
+            password: password.value,
+          };
+
+          const res = await fetch("https://onlinehpbe.onrender.com/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+            credentials: "include",
+          });
+
+          console.log(res);
+        });
+      </script>
     </form>
-</body>
+  </body>
 </html>
