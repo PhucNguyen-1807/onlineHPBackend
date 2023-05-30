@@ -126,7 +126,7 @@ class ScheduleController{
           var users= (await accConnection.query(QUERY.SELECT_INFO_USERS_IN_APPOINTMENT,result[i].userID))[0][0]
           result[i].name=users.name
           result[i].phone=users.phone
-        }
+        } 
         res.status(200).json(result)
       }
       catch(err){

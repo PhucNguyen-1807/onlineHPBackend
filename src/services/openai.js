@@ -1,20 +1,21 @@
 const { Configuration, OpenAIApi } =require ("openai");
 const configuration = new Configuration({
     organization: "org-xwcqbD0263JXvNtQRd5uSx5o",
-    apiKey: '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',
+    apiKey: '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',
 });
 const openai = new OpenAIApi(configuration);
-const fun=async()=>{
+const searchGPT=async(comment)=>{
         const response = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: 
-            `user: han\n` +
-            `comment: Cổ họng bị đau rát khi nuốt nước bọt \n`+
-            `specialist: [Tổng quát,Đa khoa,Xương khớp,Nội soi,Tai mũi họng,Nội tiêu hóa]\n`+
+            `comment: ${comment}\n`+
+            `specialist: [Tổng Quát,Đa Khoa,Xương Khớp,Nội Soi,Tai Mũi Họng,Nội Tiêu Hóa]\n`+
             `choose in specialist:`,
-            max_tokens: 30,
+            max_tokens: 25,
             temperature: 0,
         });
-console.log(response.data.choices[0].text)
+return response.data.choices[0].text
+// console.log(response.data.choices[0].text);
 }
-fun()
+// searchGPT("tôi bị đau bụng")
+module.exports = searchGPT
