@@ -1,7 +1,7 @@
 const { Configuration, OpenAIApi } =require ("openai");
 const configuration = new Configuration({
     organization: "org-xwcqbD0263JXvNtQRd5uSx5o",
-    apiKey: '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',
+    apiKey: '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',
 });
 const openai = new OpenAIApi(configuration);
 const searchGPT=async(comment)=>{
