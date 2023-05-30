@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser");
 var cors = require("cors");
 
 app.use(cors({
-  origin:["http://127.0.0.1:5501"],
+  origin:["*"],
   credentials: true,
   exposeHeaders :["set-cookie"]
 }));
@@ -19,13 +19,12 @@ app.use(cors({
 // Set up CORS middleware
 app.use((req, res, next) => {
   // Allow requests from http://127.0.0.1:5501
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5501');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   // You can also set other CORS headers as needed
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   
   // Set SameSite attribute to 'None' to allow cross-site cookies
-  res.setHeader('Set-Cookie', 'cookie_name=value; Secure; SameSite=None');
   
   // Pass control to the next middleware
   next();
