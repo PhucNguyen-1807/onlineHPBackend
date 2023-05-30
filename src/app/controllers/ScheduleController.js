@@ -44,8 +44,7 @@ class ScheduleController{
    verifyEmail(req,res){
       let verify=async() =>{
         try{
-          console.log(time());
-          var id=jwt.verify(req.params.token,process.env.SECRET).appointmentID
+          var id=jwt.verify(req.body.token,process.env.SECRET).appointmentID
           await accConnection.query(QUERY.UPDATE_APPOINTMENT_STATUS_PENDING,id)
           await accConnection.query(QUERY.UPDATE_APPOINTMENT_UPDATEAT,[time(),id])
           res.status(200).send('Verify Successfully')

@@ -26,7 +26,7 @@ function route(app)
             app.post('/add-available-time',employeeController.addAvailableTime)
             app.post('/book-appointment',scheduleController.schedule)
             app.post('/signup',loginController.signup)
-            app.get('/verify-email/:token',scheduleController.verifyEmail)
+            app.post('/verify-email',scheduleController.verifyEmail)
 
 }
 
