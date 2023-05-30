@@ -9,11 +9,11 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 var cors = require("cors");
 
-// app.use(cors({
-//   origin:["http://127.0.0.1:5501"],
-//   credentials: true,
-//   exposeHeaders :["set-cookie"]
-// }));
+app.use(cors({
+  origin:["http://127.0.0.1:5501"],
+  credentials: true,
+  exposeHeaders :["set-cookie"]
+}));
 
 
 // Set up CORS middleware
