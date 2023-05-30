@@ -65,20 +65,20 @@ class LoginController{
      }
         check()
     }
-    checkTokenExist(req,res,next)  {    
-        try{
-            var ketqua=jwt.verify(req.cookies.token,process.env.SECRET)
-            next();
-        }
-        catch(err){
-            res.status(401).send('Unauthorized')
-        }
-    }
-    logout(req,res,next)
-    {
-        res.clearCookie('token');
-        res.status(200).send('Logout Successfully')
-    }
+    // checkTokenExist(req,res,next)  {    
+    //     try{
+    //         var ketqua=jwt.verify(req.cookies.token,process.env.SECRET)
+    //         next();
+    //     }
+    //     catch(err){
+    //         res.status(401).send('Unauthorized')
+    //     }
+    // }
+    // logout(req,res,next)
+    // {
+    //     res.clearCookie('token');
+    //     res.status(200).send('Logout Successfully')
+    // }
 }
 
 module.exports=new LoginController()
