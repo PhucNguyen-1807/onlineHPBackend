@@ -8,9 +8,10 @@ const { engine } = require("express-handlebars");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 var cors = require("cors");
+require("dotenv").config();
 
 app.use(cors({
-  origin:["*"],
+  origin: process.env.ORIGIN,
   credentials: true,
   exposeHeaders :["set-cookie"]
 }));
@@ -19,7 +20,7 @@ app.use(cors({
 // Set up CORS middleware
 app.use((req, res, next) => {
   // Allow requests from http://127.0.0.1:5501
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', process.env.ORIGIN);
   // You can also set other CORS headers as needed
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
