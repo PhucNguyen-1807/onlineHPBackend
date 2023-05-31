@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const QUERY = require("../models/wdtquery")
 const sendEmail=require("../../services/emailService")
 const time=require("../../services/currentTimeService")
+const searchMedicineAI=require("../../services/searchAI.js")
 require("dotenv").config();
 
 class ScheduleController{
@@ -37,7 +38,23 @@ class ScheduleController{
    search(req,res){
     let find=async() =>{
         try{
-          var result = (await accConnection.query(QUERY.SELECT_SEARCH,[req.body.pharmacyName,req.body.valueSearch]))[0]
+          var result = (await accConnection.query(QUERY.SELECT_SEARCH,[req.query.pharmacyName,req.query.valueSearch]))[0]
+          res.status(200).json(result)
+        }
+        catch(err){
+          res.status(404).send(err)
+        }
+      }
+      find()
+   }
+
+   searchAdvanced(req,res){
+    let find=async() =>{
+        try{
+          var medicineDescription=(await searchMedicineAI(req.query.valueSearch)).trim()  
+          console.log(medicineDescription);
+          var result = (await accConnection.query(QUERY.SELECT_MEDICINE_BY_DESCRIPTION,[req.query.pharmacyName,medicineDescription]))[0]
+          console.log(result);
           res.status(200).json(result)
         }
         catch(err){
