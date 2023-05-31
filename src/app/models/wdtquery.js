@@ -29,8 +29,8 @@ const QUERY={
     "SELECT_INFO_PHARMACY":"SELECT * FROM pharmacy ",
     "SELECT_SPECIFIC_PHARMACY":"SELECT * FROM medicine WHERE pharmacyName=? ",
     "SELECT_SEARCH":"SELECT medicineName,number,price,description,image FROM medicine WHERE pharmacyName=? AND medicineName LIKE CONCAT('%', ?, '%')",
-    "SELECT_NUMBER_MEDICINE" : "SELECT number WHERE pharmacyName=? AND medicineName=?",
-    "UPDATE_NUMBER_MEDICINE" : "UPDATE medicine SET number=number - ? WHERE pharmacyName=? AND medicineName=?"
+    "SELECT_NUMBER_MEDICINE" : "SELECT quantity FROM medicine WHERE pharmacyName=? AND medicineName=?",
+    "UPDATE_NUMBER_MEDICINE" : "UPDATE medicine SET quantity=quantity - ? WHERE pharmacyName=? AND medicineName=?"
 
 
 }   
