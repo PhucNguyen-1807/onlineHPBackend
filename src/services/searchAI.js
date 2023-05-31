@@ -2,7 +2,7 @@ const { Configuration, OpenAIApi } =require ("openai");
 require("dotenv").config();
 const configuration = new Configuration({
     organization: "org-xwcqbD0263JXvNtQRd5uSx5o",
-    apiKey: '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'
+    apiKey: process.env.API_KEY
 });
 const openai = new OpenAIApi(configuration);
 const searchGPT=async(comment)=>{
