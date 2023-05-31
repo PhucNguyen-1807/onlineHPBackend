@@ -13,6 +13,8 @@ function route(app)
             app.get('/get-doctor',employeeController.getDoctorInfo)
             app.get('/get-all-doctor',employeeController.getAllDoctorInfo)
             app.get('/get-pending-users',scheduleController.getAllPending)
+            app.get('/get-approve-users',scheduleController.getAllApprove)
+            app.get('/get-cancel-users',scheduleController.getAllCancel)
             app.get('/get-approve-appointment',scheduleController.getApproveAppointment)
             app.get('/get-all-pharmacy',pharmacyController.allPharmacy)
             app.get('/get-all-medicine-pharmacy',pharmacyController.pharmacyMedicine)
@@ -27,6 +29,8 @@ function route(app)
             app.post('/book-appointment',scheduleController.schedule)
             app.post('/signup',loginController.signup)
             app.post('/verify-email',scheduleController.verifyEmail)
+            app.get('/verify-email-test/:token',scheduleController.verifyEmail)
+
 
 }
 

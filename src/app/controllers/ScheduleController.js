@@ -44,7 +44,10 @@ class ScheduleController{
    verifyEmail(req,res){
       let verify=async() =>{
         try{
+          // console.log("XIN CHAO");
           var id=jwt.verify(req.body.token,process.env.SECRET).appointmentID
+          // var id=jwt.verify(req.params.token,process.env.SECRET).appointmentID
+          console.log(id);
           await accConnection.query(QUERY.UPDATE_APPOINTMENT_STATUS_PENDING,id)
           await accConnection.query(QUERY.UPDATE_APPOINTMENT_UPDATEAT,[time(),id])
           res.status(200).send('Verify Successfully')
@@ -90,10 +93,81 @@ class ScheduleController{
     getPending()
    }
 
+   getAllApprove(req,res){
+    let getApprove=async() =>{
+      try{
+        var id_updateAt=(await accConnection.query(QUERY.SELECT_APPROVE_APPOINTMENT))[0]
+        console.log(id_updateAt);
+        var id ='('
+        for (let i=0;i<id_updateAt.length;i++)
+        {
+          id+=(id_updateAt[i].userID) + ','
+        }
+        id=id.substring(0,id.length-1)
+        id += ')'
+        var users_pending=(await accConnection.query(`SELECT id,name,email,phone FROM users WHERE id IN ${id}`))[0]
+      
+        for (let i=0;i<id_updateAt.length;i++)
+        {
+          for (let j=0;j<users_pending.length;j++)
+          {
+            if(id_updateAt[i].userID==users_pending[j].id)
+            {
+              id_updateAt[i].name=users_pending[j].name;
+              id_updateAt[i].phone=users_pending[j].phone;
+              id_updateAt[i].email=users_pending[j].email;
+            } 
+          }
+        }
+        res.status(200).json(id_updateAt)
+      }
+      catch(err){
+        res.status(404).send(err)
+      }
+    }
+    getApprove()
+   }
+
+   getAllCancel(req,res){
+    let getCancel=async() =>{
+      try{
+        var id_updateAt=(await accConnection.query(QUERY.SELECT_CANCEL_APPOINTMENT))[0]
+        console.log(id_updateAt);
+        var id ='('
+        for (let i=0;i<id_updateAt.length;i++)
+        {
+          id+=(id_updateAt[i].userID) + ','
+        }
+        id=id.substring(0,id.length-1)
+        id += ')'
+        var users_pending=(await accConnection.query(`SELECT id,name,email,phone FROM users WHERE id IN ${id}`))[0]
+      
+        for (let i=0;i<id_updateAt.length;i++)
+        {
+          for (let j=0;j<users_pending.length;j++)
+          {
+            if(id_updateAt[i].userID==users_pending[j].id)
+            {
+              id_updateAt[i].name=users_pending[j].name;
+              id_updateAt[i].phone=users_pending[j].phone;
+              id_updateAt[i].email=users_pending[j].email;
+            } 
+          }
+        }
+        res.status(200).json(id_updateAt)
+      }
+      catch(err){
+        res.status(404).send(err)
+      }
+    }
+    getCancel()
+   }
+
    approveUser(req,res){
     let approve=async() =>{
       try{
         await accConnection.query(QUERY.UPDATE_APPROVE_APPOINTMENT,req.body.appointmentID)
+        await accConnection.query(QUERY.UPDATE_APPOINTMENT_UPDATEAT,[time(),req.body.appointmentID])
         res.status(200).json("Update status approve sucessfully")
       }
       catch(err){
@@ -107,6 +181,7 @@ class ScheduleController{
     let cancel=async() =>{
       try{
         await accConnection.query(QUERY.UPDATE_CANCEL_APPOINTMENT,req.body.appointmentID)
+        await accConnection.query(QUERY.UPDATE_APPOINTMENT_UPDATEAT,[time(),req.body.appointmentID])
         res.status(200).json("Update status cancel sucessfully")
       }
       catch(err){
@@ -119,7 +194,7 @@ class ScheduleController{
    getApproveAppointment(req,res){
     let approveAppointment=async() =>{
       try{
-        var result=(await accConnection.query(QUERY.SELECT_APPROVE_APPOINTMENT,req.query.employeeID))[0]
+        var result=(await accConnection.query(QUERY.SELECT_APPROVE_APPOINTMENT_FOR_DOC,req.query.employeeID))[0]
         for(var i=0;i<result.length;i++)
         {
           var users= (await accConnection.query(QUERY.SELECT_INFO_USERS_IN_APPOINTMENT,result[i].userID))[0][0]
