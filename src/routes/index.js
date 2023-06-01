@@ -30,7 +30,7 @@ function route(app)
             app.post('/book-appointment',scheduleController.schedule)
             app.post('/signup',loginController.signup)
             app.post('/verify-email',scheduleController.verifyEmail)
-            app.get('/verify-email-test/:token',scheduleController.verifyEmail)
+            // app.get('/verify-email-test/:token',scheduleController.verifyEmail)
 
 
 }
