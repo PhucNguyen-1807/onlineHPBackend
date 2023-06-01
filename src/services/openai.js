@@ -13,7 +13,7 @@ const searchGPT=async(comment)=>{
             `specialist: [Đa Khoa,Xương Khớp,Tai Mũi Họng,Truyền Nhiễm,Tâm lí học,Tâm thần kinh,Nội tiêu hóa,Khoa sản,Da liễu,Khoa nhi,Tim mạch,Tiêm chủng,Dinh dưỡng]\n`+
             `choose many suitable in specialist:`,
             stop:["\n","symptoms:","specialist:","choose many suitable in specialist:"],
-            max_tokens: 100,
+            max_tokens: 70,
             temperature: 0,
         });
 return response.data.choices[0].text
