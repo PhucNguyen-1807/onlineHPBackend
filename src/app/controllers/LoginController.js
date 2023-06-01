@@ -33,11 +33,13 @@ class LoginController{
                         {
                         var roleId=(await accConnection.query(QUERY.SELECT_LOGIN_ROLEID,[req.body.email,req.body.password]))[0][0]
                         var employeeID=(await accConnection.query(QUERY.SELECT_LOGIN_EMPLOYEEID,[req.body.email,req.body.password]))[0][0]
-                        var token=  jwt.sign({email:req.body.email,roleID:roleId.roleId},process.env.SECRET)
+                        var avatar=(await accConnection.query(QUERY.SELECT_LOGIN_AVATAR,[req.body.email,req.body.password]))[0][0]
+                        // var token=  jwt.sign({email:req.body.email,roleID:roleId.roleId},process.env.SECRET)
                         var token={
                             email:req.body.email,
                             roleID:roleId.roleId,
-                            employeeID:employeeID.id
+                            employeeID:employeeID.id,
+                            avatar:avatar.avatar
                         }
                         // res.cookie('token', token,{
                         //     sameSite: 'None',
