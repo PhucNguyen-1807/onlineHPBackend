@@ -10,8 +10,8 @@ const searchGPT=async(comment)=>{
             model: "text-davinci-003",
             prompt: 
             `comment: ${comment}\n`+
-            `medicineType: [Tai mũi họng,Đau đầu,Gây tê,Hạ sốt,Giảm đau bụng]\n`+
-            `choose many in medicineType:`,
+            `specialist: [Orthopedics,Otorhinolaryngology,Psychology,Gastroenterology,Cardiology,Nutrition]\n`+
+            `choose the suitable specialist:`,
             max_tokens: 20,
             temperature: 0,
         });
@@ -21,3 +21,4 @@ return response.data.choices[0].text
 // searchGPT("bệnh nhân bên tôi có triệu chứng về hen suyễn")
 module.exports = searchGPT
 // `medicineType: [nhức đầu,đau bụng,ho sổ mũi,gây tê,thực phẩm bổ sung]\n`+
+// `medicineType: [Tai mũi họng,Đau đầu,Gây tê,Hạ sốt,Giảm đau bụng]\n`+
