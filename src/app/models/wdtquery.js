@@ -3,6 +3,7 @@ const QUERY={
     "SELECT_LOGIN_CHECK_EMPLOYEE":'SELECT EXISTS(SELECT * FROM employee WHERE email= ? AND password=? ) AS Existing',
     "INSERT_SIGNUP_USER":"INSERT INTO `users`(`email`,`password`) VALUES(?,?)",
     "SELECT_LOGIN_ROLEID":'SELECT roleId FROM employee WHERE email= ? AND password=? ',
+    "SELECT_LOGIN_EMPLOYEEID":'SELECT id FROM employee WHERE email= ? AND password=? ',
     "SELECT_LOGIN_USERID":'SELECT id FROM users WHERE email= ? AND password=? ',
     "SELECT_DS":'SELECT id,name,roleId,phone FROM employee WHERE roleId=2 or roleId=3',
     "SELECT_DOCTOR":'SELECT id,name,email,address,phone,specialist,gender,roleId,description,avatar FROM employee WHERE id=?',

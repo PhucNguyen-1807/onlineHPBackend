@@ -32,10 +32,12 @@ class LoginController{
                         if(check2.Existing)
                         {
                         var roleId=(await accConnection.query(QUERY.SELECT_LOGIN_ROLEID,[req.body.email,req.body.password]))[0][0]
+                        var employeeID=(await accConnection.query(QUERY.SELECT_LOGIN_EMPLOYEEID,[req.body.email,req.body.password]))[0][0]
                         var token=  jwt.sign({email:req.body.email,roleID:roleId.roleId},process.env.SECRET)
                         var token={
                             email:req.body.email,
-                            roleID:roleId.roleId
+                            roleID:roleId.roleId,
+                            employeeID:employeeID.id
                         }
                         // res.cookie('token', token,{
                         //     sameSite: 'None',
