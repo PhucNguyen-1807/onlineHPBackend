@@ -24,9 +24,7 @@ app.get('/login', (req, res) => {
 });
 
 // Start the server
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
+
 
 app.use(cookieParser({
 sameSite: 'none'
@@ -52,6 +50,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // db.connect();
 route(app);
 
-app.listen("3001", () => {
-  console.log("fuck y2ou");
+app.listen(3001, () => {
+  console.log('Server is running on port 3000');
 });
