@@ -11,7 +11,7 @@ const searchGPT=async(comment)=>{
             prompt: 
             `comment: ${comment}\n`+
             `medicineType: [Tai mũi họng,Đau đầu,Gây tê,Hạ sốt,Giảm đau bụng]\n`+
-            `only choose one in medicineType and don't generate new text:`,
+            `choose many in medicineType:`,
             max_tokens: 20,
             temperature: 0,
         });

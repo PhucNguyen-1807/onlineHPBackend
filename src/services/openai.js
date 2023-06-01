@@ -9,10 +9,11 @@ const searchGPT=async(comment)=>{
         const response = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: 
-            `comment: ${comment}\n`+
+            `symptoms: ${comment}\n`+
             `specialist: [Đa Khoa,Xương Khớp,Tai Mũi Họng,Truyền Nhiễm,Tâm lí học,Tâm thần kinh,Nội tiêu hóa,Khoa sản,Da liễu,Khoa nhi,Tim mạch,Tiêm chủng,Dinh dưỡng]\n`+
-            `choose in specialist:`,
-            max_tokens: 25,
+            `choose many suitable in specialist:`,
+            stop:["\n","symptoms:","specialist:","choose many suitable in specialist:"],
+            max_tokens: 100,
             temperature: 0,
         });
 return response.data.choices[0].text
@@ -20,3 +21,5 @@ return response.data.choices[0].text
 }
 // searchGPT("tôi bị đau bụng")
 module.exports = searchGPT
+// `specialist: [Đa Khoa,Xương Khớp,Tai Mũi Họng,Truyền Nhiễm,Tâm lí học,Tâm thần kinh,Nội tiêu hóa,Khoa sản,Da liễu,Khoa nhi,Tim mạch,Tiêm chủng,Dinh dưỡng]\n`+
+// `specialist: [General Practitioner,Orthopedics,Otorhinolaryngology,Infectious Diseases,Psychology,Neurology,Gastroenterology,Obstetrics and Gynecology,Dermatology,Pediatrics,Cardiology,Vaccination,Nutrition]\n`+

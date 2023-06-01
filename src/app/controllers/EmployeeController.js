@@ -49,9 +49,11 @@ class EmployeeController{
     {
         let getDoc =async ()=>{
             try{
-                    var specialist=(await searchGPT(req.query.comment)).trim()  
-                    console.log(specialist);
-                    var result = (await accConnection.query(QUERY.SELECT_DOCTOR_BY_SPECIALIST,specialist))[0]
+                    var specialist = (await searchGPT(req.query.comment)).trim();
+                    let specialistArray = specialist.split(",");
+                    let convertedArray = specialistArray.map(specialist => specialist.trim());
+                    console.log(convertedArray);
+                    var result = (await accConnection.query(QUERY.SELECT_DOCTOR_BY_SPECIALIST, [convertedArray]))[0];
                     console.log(result);
                     res.status(200).json(result)
                 }
