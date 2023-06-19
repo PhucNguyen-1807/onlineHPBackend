@@ -48,6 +48,7 @@ class ScheduleController{
           var id=jwt.verify(req.body.token,process.env.SECRET).appointmentID
           // var id=jwt.verify(req.params.token,process.env.SECRET).appointmentID
           console.log(id);
+          console.log(time());
           await accConnection.query(QUERY.UPDATE_APPOINTMENT_STATUS_PENDING,id)
           await accConnection.query(QUERY.UPDATE_APPOINTMENT_UPDATEAT,[time(),id])
           res.status(200).send('Verify Successfully')
@@ -92,7 +93,7 @@ class ScheduleController{
     }
     getPending()
    }
-
+   
    getAllApprove(req,res){
     let getApprove=async() =>{
       try{
